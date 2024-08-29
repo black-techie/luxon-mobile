@@ -20,7 +20,7 @@ export default function App() {
     <View style={styles.container}>
       {/* <LoginScreen /> */}
       <Dashboard />
-      <StatusBar style={colorMode} backgroundColor={backgroundColor} />
+      {/* <StatusBar style={colorMode} backgroundColor={backgroundColor} />  */}
     </View>
   );
 }

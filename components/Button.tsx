@@ -72,6 +72,6 @@ const styles = StyleSheet.create({
 
 export default Button;
 
-// blue primary: #5356FF, blue secondary: 3081D0
+// button primary: #5356FF, Main primary 3081D0
 // white: #EEF5FF
 // black: #021526

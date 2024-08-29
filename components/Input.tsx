@@ -52,7 +52,3 @@ const styles = StyleSheet.create({
 
 
 export default Input;
-
-// blue primary: #0B60B0, blue secondary: 3081D0
-// white: #EEF5FF
-// black:
