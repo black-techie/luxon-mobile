@@ -4,13 +4,14 @@ import { Text, StyleSheet, TouchableOpacity } from "react-native"
 
 interface ButtonProps {
     title: String,
-    type: string
+    type: string,
+    handleButton: any
 }
 
 
-const Button: React.FC<ButtonProps> = ({ title, type }) => {
+const Button: React.FC<ButtonProps> = ({ title, type, handleButton }) => {
 
-    if(type === "outline"){
+    if (type === "outline") {
         return (
             <React.Fragment>
                 <TouchableOpacity style={styles.buttonOutline}>
@@ -21,8 +22,8 @@ const Button: React.FC<ButtonProps> = ({ title, type }) => {
     }
     return (
         <React.Fragment>
-            <TouchableOpacity style={styles.button}>
-                <Text style={styles.buttonText}>{title}</Text> 
+            <TouchableOpacity style={styles.button} onPress={handleButton}>
+                <Text style={styles.buttonText}>{title}</Text>
             </TouchableOpacity>
         </React.Fragment>
     )
@@ -56,7 +57,7 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         borderRadius: 10,
         borderWidth: 2,
-        borderColor:"#5356FF",
+        borderColor: "#5356FF",
         width: "90%",
         height: "20%",
 

@@ -6,20 +6,21 @@ import { useState } from "react"
 interface ButtonProps {
     placeHolder: string,
     secured: boolean
-    keyboard: any
+    keyboard: any,
+    value: string,
+    setValue: any
 }
 
 
-const Input: React.FC<ButtonProps> = ({placeHolder, secured, keyboard}) => {
-    const [password, setPassword] = useState<string>('');
+const Input: React.FC<ButtonProps> = ({placeHolder, secured, keyboard, value, setValue}) => {
 
     return (
         <React.Fragment>
             <TextInput
                 style={styles.input}
                 placeholder={placeHolder}
-                value={password}
-                onChangeText={setPassword}
+                value={value}
+                onChangeText={setValue}
                 secureTextEntry={secured} 
                 keyboardType={keyboard} 
                 autoCapitalize="none"
