@@ -1,61 +1,75 @@
-import React from "react"
-import { StyleSheet, ImageBackground, View, Text, TouchableOpacity, Alert } from "react-native";
+import React, { useEffect } from "react"
+import { StyleSheet, View, Keyboard, Alert, ActivityIndicator } from "react-native";
 import Icon from 'react-native-vector-icons/Ionicons'
 import Button from "../components/Button";
 import Input from "../components/Input";
 
 
 import { useState } from "react";
+import { paymentUrl } from "../tools/BaseUrl";
+import Navigation from "../layouts/NavigationBar";
 
-
+const baseUrl = paymentUrl()
 
 export default ({ navigation }: any) => {
 
     const [phone, setPhone] = useState("")
     const [meter, setMeter] = useState("")
     const [units, setUnits] = useState("")
+    const [submit, setSubmit] = useState(false)
+
+
+
+
 
     const submitTransaction = async () => {
+        setSubmit(true)
         if (phone == "" || meter == "" || units == "") {
             Alert.alert("Please fill in the form")
+            setSubmit(false)
             return;
         }
-        fetch("http://192.168.1.100:3400/api/transaction/create/",
+        fetch(baseUrl + "/api/transaction/create/",
             {
                 method: "POST", headers: {
                     Accept: 'application/json',
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ phone, meter, units })
-
             }
         )
+
             .then(res => res.json())
             .then((res) => {
-                console.log("Response from server", res)
+                setSubmit(false)
+                if (res.message) {
+                    navigation.navigate('Dashboard');
+                }
             })
+
 
     }
     return (
         <React.Fragment>
-            <View style={styles.main}>
-                <TouchableOpacity style={{
-                    alignSelf: "flex-start",
-                    borderColor: "#3081D0",
-                    flexDirection: "row",
-                    alignItems: "center",
-                    borderRadius: 10,
-                    marginLeft: 10,
-                    marginBottom: 5
-                }}
-                    onPress={() => { navigation.navigate('Dashboard') }}
+            <View style={styles.container}>
+                <View style={styles.main}>
+                    <View style={styles.glassView}>
+                        <Input placeHolder={"Phone - 0789105606"} secured={false} keyboard="numeric" value={phone} setValue={setPhone} />
+                        <Input placeHolder={"Meter - 12345678901"} secured={false} keyboard="numeric" value={meter} setValue={setMeter} />
+                        <Input placeHolder={"Units in Kwh"} secured={false} keyboard="numeric" value={units} setValue={setUnits} />
+                        {
+                            (submit == true) ? <ActivityIndicator size="large" color="#0000ff" /> : <Button title={"CREATE"} type="default" handleButton={submitTransaction} />
+                        }
+
+                    </View>
+                </View>
+                <View
+                    style={{
+                        height: "10%",
+                        width: "100%"
+                    }}
                 >
-                    <Icon name="arrow-back-sharp" size={15} color='#3081D0' /><Text style={{ color: "#3081D0", padding: 10 }}>Quit Create Transaction</Text></TouchableOpacity>
-                <View style={styles.glassView}>
-                    <Input placeHolder={"Phone Number"} secured={false} keyboard="numeric" value={phone} setValue={setPhone} />
-                    <Input placeHolder={"Meter Number"} secured={false} keyboard="numeric" value={meter} setValue={setMeter} />
-                    <Input placeHolder={"Units"} secured={false} keyboard="numeric" value={units} setValue={setUnits} />
-                    <Button title={"CREATE"} type="default" handleButton={submitTransaction} />
+                    <Navigation page="purchase" navigator={navigation} />
                 </View>
             </View>
         </React.Fragment>
@@ -63,9 +77,15 @@ export default ({ navigation }: any) => {
 }
 
 const styles = StyleSheet.create({
-    main: {
+    container: {
         flex: 1,
         backgroundColor: "#20262E",
+        alignItems: "center",
+        justifyContent: "center"
+    },
+    main: {
+        height: "90%",
+        width: "100%",
         alignItems: "center",
         justifyContent: "center"
     },

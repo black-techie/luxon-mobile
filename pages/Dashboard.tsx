@@ -4,15 +4,20 @@ import Navigation from "../layouts/NavigationBar";
 import SummaryCard from "../components/SummaryCard";
 import PrepaidMeter from "../components/PrepaidMeter";
 import io from 'socket.io-client';
+import { paymentUrl } from "../tools/BaseUrl";
+
+const baseUrl = paymentUrl()
+const socket = io(baseUrl);
 
 
-const socket = io('http://192.168.1.100:3400');
 export default ({ navigation }: any) => {
     const [messages, setMessages] = useState({ "alarm": 1, "current": 0, "energy": 0, "frequency": 0, "id": "0", "power": 0, "unitsBalance": 0, "voltage": 0, "boot": false });
     function callMe(e: any) { }
     useEffect(() => {
         socket.on('mqtt_message', async (data) => {
-            setMessages(data)
+            if ("data" in data) {
+                setMessages(data.data)
+            }
         });
         return () => {
             socket.off('mqtt_message');

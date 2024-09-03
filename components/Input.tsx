@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         margin: 8,
         backgroundColor: 'white',
-        width: "90%"
+        width: "90%",
     },
 });
 
