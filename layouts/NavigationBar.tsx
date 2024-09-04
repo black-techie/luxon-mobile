@@ -35,7 +35,7 @@ const Navigation: React.FC<NavigationType> = ({ page, navigator }) => {
         <View style={styles.container}>
             <TouchableOpacity onPress={() => { navigator.navigate('Dashboard') }} style={page === "home" ? styles.itemActive : styles.item}><Icon name="home" size={26} color='#3081D0' /><Text style={styles.label}>Home</Text></TouchableOpacity>
             <TouchableOpacity onPress={() => { navigator.navigate('History') }} style={page === "history" ? styles.itemActive : styles.item}><Icon1 name="insert-chart" size={25} color='#3081D0' /><Text style={styles.label}>History</Text></TouchableOpacity>
-            <TouchableOpacity onPress={() => { navigator.navigate('Transaction') }} style={page === "purchase" ? styles.itemActive : styles.item}><Icon3 name="money-bill-transfer" size={24} color='#3081D0' /><Text style={styles.label}>Purchase</Text></TouchableOpacity>
+            <TouchableOpacity onPress={() => { navigator.navigate('Transaction') }} style={page === "purchase" ? styles.itemActive : styles.item}><Icon3 name="money-bill-transfer" size={23.5} color='#3081D0' /><Text style={styles.label}>Purchase</Text></TouchableOpacity>
             <TouchableOpacity onPress={() => { navigator.navigate('Settings') }} style={page === "settings" ? styles.itemActive : styles.item}><Icon2 name="gear" size={25} color='#3081D0' /><Text style={styles.label}>Profile</Text></TouchableOpacity>
         </View>
     )

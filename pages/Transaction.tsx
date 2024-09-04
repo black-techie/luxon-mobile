@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"
-import { StyleSheet, View, Keyboard, Alert, ActivityIndicator } from "react-native";
+import { StyleSheet, View, Keyboard, Alert, ActivityIndicator, Text } from "react-native";
 import Icon from 'react-native-vector-icons/Ionicons'
 import Button from "../components/Button";
 import Input from "../components/Input";
@@ -8,6 +8,7 @@ import Input from "../components/Input";
 import { useState } from "react";
 import { paymentUrl } from "../tools/BaseUrl";
 import Navigation from "../layouts/NavigationBar";
+import { Picker } from '@react-native-picker/picker';
 
 const baseUrl = paymentUrl()
 
@@ -17,6 +18,7 @@ export default ({ navigation }: any) => {
     const [meter, setMeter] = useState("")
     const [units, setUnits] = useState("")
     const [submit, setSubmit] = useState(false)
+    const [selectedValue, setSelectedValue] = useState("java");
 
 
 
@@ -54,13 +56,20 @@ export default ({ navigation }: any) => {
             <View style={styles.container}>
                 <View style={styles.main}>
                     <View style={styles.glassView}>
-                        <Input placeHolder={"Phone - 0789105606"} secured={false} keyboard="numeric" value={phone} setValue={setPhone} />
-                        <Input placeHolder={"Meter - 12345678901"} secured={false} keyboard="numeric" value={meter} setValue={setMeter} />
-                        <Input placeHolder={"Units in Kwh"} secured={false} keyboard="numeric" value={units} setValue={setUnits} />
+                        <Input placeHolder={"     Phone - 0789105606"} secured={false} keyboard="numeric" value={phone} setValue={setPhone} />
+                        <View style={styles.picker}>
+                            <Picker
+                                selectedValue={meter}
+                                onValueChange={(itemValue) => setMeter(itemValue)}
+                            >
+                                <Picker.Item style={{ fontSize: 14.5, color: "black" }} label="Choose Meter" value="" />
+                                <Picker.Item style={{ fontSize: 14.5, color: "grey" }} label="Nyumbani Vikindu" value="12345678901" />
+                            </Picker>
+                        </View>
+                        <Input placeHolder={"     Units in Kwh"} secured={false} keyboard="numeric" value={units} setValue={setUnits} />
                         {
                             (submit == true) ? <ActivityIndicator size="large" color="#0000ff" /> : <Button title={"CREATE"} type="default" handleButton={submitTransaction} />
                         }
-
                     </View>
                 </View>
                 <View
@@ -117,5 +126,23 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         overflow: 'hidden',
+    },
+    label: {
+        fontSize: 18,
+        marginBottom: 10,
+    },
+    picker: {
+        height: "21%",
+        borderColor: '#ccc',
+        borderWidth: 1,
+        borderRadius: 10,
+        paddingHorizontal: 10,
+        margin: 8,
+        backgroundColor: 'white',
+        width: "90%",
+    },
+    selectedValue: {
+        marginTop: 20,
+        fontSize: 18,
     },
 });

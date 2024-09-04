@@ -45,7 +45,7 @@ export default () => {
                         }}>
                         <Text
                             style={styles.labelOne}
-                        >Statistics</Text>
+                        >Purchases</Text>
                         <Text
                             style={{ color: "white" }}
                         >Year: 2024</Text>
@@ -68,7 +68,7 @@ export default () => {
                                 }}>
                                 <Text
                                     style={{ color: "white", fontWeight: "800", fontSize: 12, paddingLeft: 5 }}
-                                >Quarter</Text>
+                                >Quarter 1</Text>
                                 <Icon2 name="down" size={15} color='white' />
                             </View>
                         </TouchableOpacity>

@@ -10,7 +10,7 @@ interface DisplayProp {
     handler: any
 }
 
-const PrepaidMeter: React.FC<DisplayProp> = ({ values , handler}) => {
+const PrepaidMeter: React.FC<DisplayProp> = ({ values, handler }) => {
 
     const displayCodes = ["007", "008", "001", "002", "005"]
     const displayValue = ["unitsBalance", "power", "voltage", "current", "frequency"]
@@ -30,17 +30,28 @@ const PrepaidMeter: React.FC<DisplayProp> = ({ values , handler}) => {
             setToggle(true);
             setTimeout(() => {
                 setC(c < 4 ? c + 1 : 0)
-                if (("boot" in values) == false && "unitsBalance" in values) {
-                    setCode(displayCodes[c] + " (" + displayValue[c] + ") ")
-                    setValue(values[displayValue[c]])
-                    setUnit(siUnits[c])
-                    setVoltage(values["voltage"]) 
-                    setUnitsBalance(parseFloat(values["unitsBalance"]))
-                    setAlarm(values["alarm"])
+                if (("boot" in values) == false) {
+                    if ("unitsBalance" in values) {
+                        setCode(displayCodes[c] + " (" + ((c == 0) ? "balance" : displayValue[c]) + ") ")
+                        setValue(values[displayValue[c]])
+                        setUnit(siUnits[c])
+                        setVoltage(values["voltage"])
+                        setUnitsBalance(parseFloat(values["unitsBalance"]))
+                        setAlarm(values["alarm"])
+                    }
+                }
+                else {
+                    switch (c) {
+                        case 0: setUnit("---"); break;
+                        case 1: setUnit("--- "); break
+                        case 2: setUnit("---  "); break
+                        case 3: setUnit("---   "); break
+                        case 4: setUnit("---    "); break
+                    }
                 }
                 setToggle(false);
             }, 100);
-        }, 3000); 
+        }, 3000);
         return () => clearInterval(interval);
     }, [c]);
 
@@ -101,7 +112,7 @@ const PrepaidMeter: React.FC<DisplayProp> = ({ values , handler}) => {
                     </View>
                     <View
                         style={{
-                            alignItems: "center" 
+                            alignItems: "center"
                         }}
                     ><View style={voltage > 180 ? styles.circleActive : styles.circle} /><Text style={{ color: "white", fontWeight: "bold" }}>power</Text>
                     </View>

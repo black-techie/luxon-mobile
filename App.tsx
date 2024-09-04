@@ -7,7 +7,6 @@ import LoginScreen from './pages/LoginScreen';
 import Dashboard from './pages/Dashboard';
 import Settings from './pages/Settings'
 import History from './pages/History';
-import Test from './pages/Test';
 
 const backgroundColor = "#20262E";
 const colorMode = "light" // 'dark' or 'light'

@@ -23,17 +23,6 @@ const Settings = ({ navigation }: any) => {
             >
                 <View style={styles.container}>
                     <Text style={styles.header}>Settings</Text>
-
-                    {/* <View style={styles.settingRow}>
-                        <Text style={styles.settingText}></Text>
-                        <Switch
-                            trackColor={{ false: "#767577", true: "#81b0ff" }}
-                            thumbColor={isDarkMode ? "#3081D0" : "#f4f3f4"}
-                            onValueChange={toggleDarkMode}
-                            value={isDarkMode}
-                        />
-                    </View> */}
-
                     <View style={styles.settingRow}>
                         <Text style={styles.settingText}>Notifications</Text>
                         <Switch
@@ -45,23 +34,26 @@ const Settings = ({ navigation }: any) => {
                     </View>
                     <TouchableOpacity
                         style={styles.settingRow}
-                        // onPress={() => navigation.navigate('LanguageSettings')}
                     >
                         <Text style={styles.settingText}>Change Password</Text>
                         <Text style={styles.arrow}>›</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.settingRow}
-                        // onPress={() => navigation.navigate('LanguageSettings')}
                     >
-                        <Text style={styles.settingText}>Add Meter</Text>
+                        <Text style={styles.settingText}>Add Prepaid Meter</Text>
                         <Text style={styles.arrow}>›</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.settingRow}
-                        // onPress={() => navigation.navigate('LanguageSettings')}
                     >
                         <Text style={styles.settingText}>Logout</Text>
+                        <Text style={styles.arrow}>›</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.settingRow}
+                    >
+                        <Text style={styles.settingText}>Help</Text>
                         <Text style={styles.arrow}>›</Text>
                     </TouchableOpacity>
                 </View>
@@ -87,10 +79,11 @@ const styles = StyleSheet.create({
     },
     container: {
         width: "90%",
-
         backgroundColor: 'rgba(255, 255, 255, 0.15)',
         borderRadius: 10,
         padding: 20,
+        paddingBottom: 50
+
     },
     header: {
         fontSize: 30,

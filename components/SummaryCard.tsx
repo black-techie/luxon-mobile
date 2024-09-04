@@ -17,6 +17,18 @@ export default () => {
                             </View>
                             <View style={{padding: "2%"}}>
                                 <View><Text style={{ fontWeight: "300", color: "white", fontSize: 10 }}>This Week</Text></View>
+                                {/* {
+                                    to calcurate power this Week
+                                    so the backend will send the current units of meter from the start of the week, Monday if not available then 0
+
+                                    so the new weekly usage will be initial data from monday.value - current units
+
+                                    thererfore this week = monday -today
+                                    estimationn monthly = this week + last weeK+other last week+Final last week
+                                    or estimation monthly = (this week + last week) * 2
+                                    or estimation monthly = (this week * 4)
+                                    
+                                } */}
                                 <View><Text style={{ fontWeight: "bold", color: "white" }}>100<Text> Kwh</Text></Text></View>
                             </View>
                         </View>
@@ -25,8 +37,8 @@ export default () => {
                                 <Icon1 name="bolt-lightning" size={32} color='#3081D0' />
                             </View>
                             <View>
-                                <View><Text style={{ fontWeight: "300", color: "white", fontSize: 10 }}>This Day</Text></View>
-                                <View><Text style={{ fontWeight: "bold", color: "white" }}>100<Text> kWh</Text></Text></View>
+                                <View><Text style={{ fontWeight: "300", color: "white", fontSize: 10 }}>Live Energy</Text></View>
+                                <View><Text style={{ fontWeight: "bold", color: "white" }}>0.01<Text> kWh</Text></Text></View>
                             </View>
                         </View>
                     </View>
