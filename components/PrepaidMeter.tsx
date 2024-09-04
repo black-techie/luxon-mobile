@@ -12,7 +12,7 @@ interface DisplayProp {
 
 const PrepaidMeter: React.FC<DisplayProp> = ({ values, handler }) => {
 
-    const displayCodes = ["007", "008", "001", "002", "005"]
+    const displayCodes = ["006", "007", "008", "001", "002", "005"]
     const displayValue = ["unitsBalance", "power", "voltage", "current", "frequency"]
     const siUnits = ["kWh", "kW", "V", "A", "Hz"]
     const [toggle, setToggle] = useState(false)

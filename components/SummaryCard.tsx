@@ -15,16 +15,24 @@ export default () => {
                             <View>
                                 <Icon name="plug" size={35} color='#3081D0' />
                             </View>
-                            <View style={{padding: "2%"}}>
+                            <View style={{ padding: "2%" }}>
                                 <View><Text style={{ fontWeight: "300", color: "white", fontSize: 10 }}>This Week</Text></View>
                                 {/* {
-                                    to calcurate power this Week
-                                    so the backend will send the current units of meter from the start of the week, Monday if not available then 0
+                                to store last unit
+                                
+                                    to calculate power this Week
+                                    to store consumption every day
+                                        if last consumption is not available or 0
+                                            then newConsumption = consumption
+                                        else 
+                                            last consumption  = lastConsumption + newConsumption
+                                    
+                                    so the backend will send the last consumptions of meter from the start of the week, Monday if not available then 0
 
                                     so the new weekly usage will be initial data from monday.value - current units
 
-                                    thererfore this week = monday -today
-                                    estimationn monthly = this week + last weeK+other last week+Final last week
+                                    therefore this week = monday -today
+                                    estimation monthly = this week + last weeK+other last week+Final last week
                                     or estimation monthly = (this week + last week) * 2
                                     or estimation monthly = (this week * 4)
                                     
@@ -33,7 +41,7 @@ export default () => {
                             </View>
                         </View>
                         <View style={styles.headerContentRight}>
-                            <View style={{padding: "2%"}}>
+                            <View style={{ padding: "2%" }}>
                                 <Icon1 name="bolt-lightning" size={32} color='#3081D0' />
                             </View>
                             <View>
